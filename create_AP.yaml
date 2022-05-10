@@ -10,9 +10,16 @@
       use_ssl: yes
       validate_certs: no
   tasks:
-  - name: Add a tenant using aci_tenant
-    aci_tenant:
+  - name: CREATE ACI TENANT APP PROFILE
+    aci_ap:
       <<: *aci_login
+      ap: '{{awx_ap_name}}'
       tenant: '{{awx_tenant_name}}'
-      description: 'created by Ansible Tower'
-      state: '{{awx_tenant_state}}'
+
+  - name: CREATE ACI TENANT APP PROFILE EPG
+    aci_epg:
+      <<: *aci_login
+      epg: '{{awx_epg_name}}'
+      ap: '{{awx_ap_name}}'
+      tenant: '{{awx_tenant_name}}'
+      bd: '{{awx_bd_name}}'
