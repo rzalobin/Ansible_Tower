@@ -4,7 +4,7 @@
   vars:
     aci_login: &aci_login
       hostname: '{{ inventory_hostname }}'
-      username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}' 
+      username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
       password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
       use_proxy: no
       use_ssl: yes
@@ -15,4 +15,4 @@
       <<: *aci_login
       tenant: '{{awx_tenant_name}}'
       description: 'created by AWX workflow'
-      state: present
+      state: '{{awx_tenant_state}}'
